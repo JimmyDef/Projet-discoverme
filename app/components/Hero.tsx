@@ -3,245 +3,309 @@
 import { useEffect, useState } from 'react';
 
 export default function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [scrollY, setScrollY] = useState(0);
+  const [glitchActive, setGlitchActive] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: (e.clientY / window.innerHeight - 0.5) * 2,
-      });
-    };
+    const interval = setInterval(() => {
+      setGlitchActive(true);
+      setTimeout(() => setGlitchActive(false), 200);
+    }, 3000);
 
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950"
-      style={{ perspective: '1000px' }}
-    >
-      {/* 3D Floating geometric shapes in background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl backdrop-blur-sm border border-blue-400/30"
-          style={{
-            transform: `translateZ(${scrollY * 0.1}px) rotateX(${mousePosition.y * 10}deg) rotateY(${mousePosition.x * 10}deg) translateX(${mousePosition.x * 20}px) translateY(${mousePosition.y * 20}px)`,
-            transition: 'transform 0.3s ease-out',
-            transformStyle: 'preserve-3d',
-          }}
-        />
-        <div
-          className="absolute bottom-32 right-32 w-48 h-48 bg-gradient-to-tl from-purple-500/20 to-pink-500/20 rounded-3xl backdrop-blur-sm border border-purple-400/30"
-          style={{
-            transform: `translateZ(${scrollY * 0.15}px) rotateX(${-mousePosition.y * 15}deg) rotateY(${-mousePosition.x * 15}deg) translateX(${-mousePosition.x * 30}px) translateY(${-mousePosition.y * 30}px)`,
-            transition: 'transform 0.3s ease-out',
-            transformStyle: 'preserve-3d',
-          }}
-        />
-        <div
-          className="absolute top-1/2 right-20 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl backdrop-blur-sm border border-cyan-400/30"
-          style={{
-            transform: `translateZ(${scrollY * 0.12}px) rotateX(${mousePosition.y * 12}deg) rotateY(${mousePosition.x * 12}deg) translateX(${mousePosition.x * 25}px) translateY(${mousePosition.y * 25}px)`,
-            transition: 'transform 0.3s ease-out',
-            transformStyle: 'preserve-3d',
-          }}
-        />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-purple-900 via-pink-600 to-yellow-400">
+      {/* Animated grid perspective background */}
+      <div className="absolute inset-0 perspective-grid">
+        <div className="grid-lines" />
       </div>
 
-      {/* Main content with 3D transform */}
-      <div
-        className="relative z-10 max-w-6xl mx-auto px-6"
-        style={{
-          transform: `translateZ(${scrollY * -0.2}px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`,
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.3s ease-out',
-        }}
-      >
-        {/* Floating 3D card */}
-        <div className="mb-12 perspective-container">
-          <div
-            className="floating-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-12 shadow-2xl"
-            style={{
-              transform: `translateZ(50px) rotateX(${-mousePosition.y * 5}deg) rotateY(${-mousePosition.x * 5}deg)`,
-              transformStyle: 'preserve-3d',
-              transition: 'transform 0.3s ease-out',
-            }}
-          >
-            <div className="text-center space-y-8">
-              {/* Status badge */}
-              <div
-                className="inline-block"
-                style={{
-                  transform: 'translateZ(30px)',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                <span className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-full text-sm shadow-lg shadow-emerald-500/50 animate-pulse">
-                  ● AVAILABLE FOR HIRE
-                </span>
-              </div>
+      {/* Retro sun */}
+      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sun-container">
+        <div className="retro-sun" />
+      </div>
 
-              {/* Name with 3D depth */}
-              <h1
-                className="text-7xl md:text-9xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6"
-                style={{
-                  transform: 'translateZ(60px)',
-                  transformStyle: 'preserve-3d',
-                  textShadow: '0 0 80px rgba(139, 92, 246, 0.5)',
-                }}
-              >
-                Jimmy Defains
-              </h1>
+      {/* Scanlines overlay */}
+      <div className="scanlines" />
 
-              {/* Tech stack pills with depth */}
-              <div
-                className="flex flex-wrap justify-center gap-4"
-                style={{
-                  transform: 'translateZ(40px)',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                {['React', 'Next.js', 'TypeScript', 'Node.js'].map((tech, index) => (
-                  <span
-                    key={tech}
-                    className="px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-blue-200 font-semibold text-lg shadow-lg hover:scale-110 transition-transform"
-                    style={{
-                      transform: `translateZ(${20 + index * 5}px)`,
-                      transformStyle: 'preserve-3d',
-                    }}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+      {/* Main content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <div className="mb-8 space-y-6">
+          {/* Status badge */}
+          <div className="inline-block px-6 py-2 bg-cyan-500 border-4 border-pink-500 transform skew-x-[-5deg] shadow-[0_0_30px_rgba(236,72,153,0.8)] animate-pulse">
+            <span className="text-purple-900 font-black text-lg tracking-wider">
+              ● AVAILABLE NOW ●
+            </span>
+          </div>
 
-              {/* Info card */}
+          {/* Glitch name */}
+          <div className="relative">
+            <h1
+              className={`text-7xl md:text-9xl font-black mb-6 retro-text ${glitchActive ? 'glitch-active' : ''}`}
+              style={{
+                fontFamily: 'Impact, fantasy',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+              }}
+            >
+              <span className="text-cyan-400 drop-shadow-[0_0_30px_rgba(34,211,238,1)]">Jimmy</span>
+              <br />
+              <span className="text-pink-500 drop-shadow-[0_0_30px_rgba(236,72,153,1)]">Defains</span>
+            </h1>
+            {glitchActive && (
+              <>
+                <h1
+                  className="absolute inset-0 text-7xl md:text-9xl font-black opacity-70"
+                  style={{
+                    fontFamily: 'Impact, fantasy',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    left: '-5px',
+                    color: '#ff00ff',
+                    mixBlendMode: 'screen',
+                  }}
+                >
+                  Jimmy
+                  <br />
+                  Defains
+                </h1>
+                <h1
+                  className="absolute inset-0 text-7xl md:text-9xl font-black opacity-70"
+                  style={{
+                    fontFamily: 'Impact, fantasy',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    left: '5px',
+                    color: '#00ffff',
+                    mixBlendMode: 'screen',
+                  }}
+                >
+                  Jimmy
+                  <br />
+                  Defains
+                </h1>
+              </>
+            )}
+          </div>
+
+          {/* Subtitle with VHS effect */}
+          <div className="inline-block bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 p-1">
+            <div className="bg-purple-900 px-8 py-4">
+              <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400 tracking-widest">
+                FULL STACK DEVELOPER
+              </h2>
+            </div>
+          </div>
+
+          {/* Tech stack with neon boxes */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            {['REACT', 'NEXT.JS', 'TYPESCRIPT', 'NODE.JS'].map((tech, index) => (
               <div
-                className="mt-8 p-8 bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-lg rounded-2xl border border-white/10"
+                key={tech}
+                className="relative group"
                 style={{
-                  transform: 'translateZ(25px)',
-                  transformStyle: 'preserve-3d',
+                  animation: `float ${3 + index * 0.5}s ease-in-out infinite`,
+                  animationDelay: `${index * 0.2}s`,
                 }}
               >
-                <div className="space-y-3 text-lg text-slate-300">
-                  <p className="flex items-center justify-center gap-2">
-                    <span className="text-2xl">💼</span>
-                    <span className="font-semibold text-white">Full Stack Developer</span>
-                  </p>
-                  <p className="flex items-center justify-center gap-2">
-                    <span className="text-2xl">📍</span>
-                    <span>Paris, Île-de-France</span>
-                  </p>
-                  <p className="flex items-center justify-center gap-2">
-                    <span className="text-2xl">🎓</span>
-                    <span>OpenClassrooms RNCP Niveau 6</span>
-                  </p>
-                  <p className="flex items-center justify-center gap-2">
-                    <span className="text-2xl">💻</span>
-                    <span>Remote • Hybrid</span>
-                  </p>
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-cyan-500 blur-xl opacity-75 group-hover:opacity-100 transition-opacity" />
+                <div className="relative px-6 py-3 bg-purple-900 border-2 border-cyan-400 transform skew-x-[-5deg] font-black text-cyan-400 tracking-wider hover:scale-110 transition-transform">
+                  {tech}
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
 
-              {/* Featured project */}
-              <div
-                className="mt-8 p-6 bg-gradient-to-r from-purple-900/30 to-pink-900/30 backdrop-blur-lg rounded-2xl border border-purple-400/30"
-                style={{
-                  transform: 'translateZ(30px)',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                <p className="text-sm text-purple-300 mb-2 font-semibold">⭐ FEATURED PROJECT</p>
-                <p className="text-lg font-bold text-purple-200 mb-2">QRPlans SaaS Platform</p>
-                <p className="text-xs text-purple-300/80">
-                  Multi-tenant • 3 Databases • Stripe/PayPal • AWS S3 • BullMQ • Redis
-                </p>
+        {/* Info box with retro computer style */}
+        <div className="mt-12 mx-auto max-w-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 p-1">
+          <div className="bg-purple-950 p-8">
+            <div className="grid grid-cols-2 gap-6 text-left font-mono">
+              <div>
+                <p className="text-pink-400 text-sm mb-1">{'>'} LOCATION_</p>
+                <p className="text-cyan-300 font-bold">Paris, Île-de-France</p>
               </div>
-
-              {/* CTA buttons with 3D effect */}
-              <div
-                className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
-                style={{
-                  transform: 'translateZ(35px)',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                <a
-                  href="mailto:jimmydef@outlook.fr"
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold text-lg shadow-2xl shadow-purple-500/50 hover:scale-105 hover:shadow-purple-500/70 transition-all duration-300"
-                >
-                  Contact Me
-                </a>
-                <a
-                  href="https://github.com/JimmyDef"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-bold text-lg hover:bg-white/20 hover:scale-105 transition-all duration-300"
-                >
-                  View GitHub
-                </a>
+              <div>
+                <p className="text-pink-400 text-sm mb-1">{'>'} STATUS_</p>
+                <p className="text-cyan-300 font-bold">Available Immediately</p>
               </div>
-
-              {/* Social links */}
-              <div
-                className="flex justify-center gap-4 mt-8"
-                style={{
-                  transform: 'translateZ(20px)',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                <a
-                  href="https://github.com/JimmyDef"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 hover:scale-110 transition-all"
-                  aria-label="GitHub"
-                >
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" clipRule="evenodd" />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/jimmy-defranceschi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 hover:scale-110 transition-all"
-                  aria-label="LinkedIn"
-                >
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                </a>
+              <div>
+                <p className="text-pink-400 text-sm mb-1">{'>'} EDUCATION_</p>
+                <p className="text-cyan-300 font-bold">OpenClassrooms RNCP-6</p>
+              </div>
+              <div>
+                <p className="text-pink-400 text-sm mb-1">{'>'} MODE_</p>
+                <p className="text-cyan-300 font-bold">Remote • Hybrid</p>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Featured project */}
+        <div className="mt-8 mx-auto max-w-3xl bg-gradient-to-r from-cyan-500 to-pink-500 p-1 transform hover:scale-105 transition-all">
+          <div className="bg-purple-950 p-6">
+            <p className="text-yellow-400 font-black text-sm mb-2 tracking-widest">⚡ FEATURED PROJECT ⚡</p>
+            <p className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-cyan-400 mb-2">
+              QRPLANS SAAS PLATFORM
+            </p>
+            <p className="text-xs text-pink-300 font-mono">
+              Multi-tenant • 3 Databases • Stripe/PayPal • AWS S3 • BullMQ • Redis • Next.js 16
+            </p>
+          </div>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">
+          <a
+            href="mailto:jimmydef@outlook.fr"
+            className="group relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-cyan-500 blur-xl group-hover:blur-2xl transition-all" />
+            <div className="relative px-10 py-5 bg-cyan-500 border-4 border-pink-500 font-black text-2xl text-purple-900 transform skew-x-[-5deg] hover:skew-x-[5deg] transition-transform">
+              CONTACT ME
+            </div>
+          </a>
+          <a
+            href="https://github.com/JimmyDef"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-pink-500 blur-xl group-hover:blur-2xl transition-all" />
+            <div className="relative px-10 py-5 bg-purple-900 border-4 border-cyan-400 font-black text-2xl text-cyan-400 transform skew-x-[-5deg] hover:skew-x-[5deg] transition-transform">
+              GITHUB
+            </div>
+          </a>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-6 mt-8">
+          <a
+            href="https://github.com/JimmyDef"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-4 bg-cyan-500 border-4 border-pink-500 hover:bg-pink-500 hover:border-cyan-500 transition-all transform hover:scale-110"
+            aria-label="GitHub"
+          >
+            <svg className="w-8 h-8 text-purple-900" fill="currentColor" viewBox="0 0 24 24">
+              <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" clipRule="evenodd" />
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jimmy-defranceschi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-4 bg-pink-500 border-4 border-cyan-500 hover:bg-cyan-500 hover:border-pink-500 transition-all transform hover:scale-110"
+            aria-label="LinkedIn"
+          >
+            <svg className="w-8 h-8 text-purple-900" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+        </div>
+
+        {/* Retro tagline */}
+        <div className="mt-12">
+          <p className="text-yellow-400 font-black text-sm tracking-[0.3em] animate-pulse">
+            ▲ LOADING PORTFOLIO... ▲
+          </p>
         </div>
       </div>
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px) translateZ(50px); }
-          50% { transform: translateY(-20px) translateZ(50px); }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
         }
-        .floating-card {
-          animation: float 6s ease-in-out infinite;
+
+        .perspective-grid {
+          transform: perspective(500px) rotateX(60deg);
+          transform-origin: center bottom;
         }
-        .perspective-container {
-          perspective: 2000px;
-          transform-style: preserve-3d;
+
+        .grid-lines {
+          width: 200%;
+          height: 200%;
+          background-image:
+            linear-gradient(0deg, transparent 24%, rgba(236, 72, 153, .3) 25%, rgba(236, 72, 153, .3) 26%, transparent 27%, transparent 74%, rgba(236, 72, 153, .3) 75%, rgba(236, 72, 153, .3) 76%, transparent 77%, transparent),
+            linear-gradient(90deg, transparent 24%, rgba(236, 72, 153, .3) 25%, rgba(236, 72, 153, .3) 26%, transparent 27%, transparent 74%, rgba(236, 72, 153, .3) 75%, rgba(236, 72, 153, .3) 76%, transparent 77%, transparent);
+          background-size: 50px 50px;
+          animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(50px); }
+        }
+
+        .retro-sun {
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          background: linear-gradient(to bottom, #ff00ff, #ff0080, #ffff00);
+          box-shadow:
+            0 0 60px rgba(255, 0, 255, 0.8),
+            0 0 120px rgba(255, 0, 128, 0.6),
+            0 0 180px rgba(255, 255, 0, 0.4);
+          position: relative;
+        }
+
+        .retro-sun::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: rgba(138, 43, 226, 0.5);
+          box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+        }
+
+        .retro-sun::after {
+          content: '';
+          position: absolute;
+          top: 60%;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: rgba(138, 43, 226, 0.5);
+          box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+        }
+
+        .scanlines {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+          );
+          pointer-events: none;
+          animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(10px); }
+        }
+
+        .glitch-active {
+          animation: glitch 0.2s infinite;
+        }
+
+        @keyframes glitch {
+          0% { transform: translate(0); }
+          20% { transform: translate(-5px, 5px); }
+          40% { transform: translate(-5px, -5px); }
+          60% { transform: translate(5px, 5px); }
+          80% { transform: translate(5px, -5px); }
+          100% { transform: translate(0); }
         }
       `}</style>
     </section>
