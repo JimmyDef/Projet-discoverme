@@ -1,91 +1,80 @@
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-black border-t-2 border-green-500/30 text-green-400 py-16 px-6 font-mono relative overflow-hidden">
-      {/* Background effect */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f0_1px,transparent_1px),linear-gradient(to_bottom,#0f0_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+    <footer
+      id="contact"
+      className="bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 border-t border-white/10 text-white py-16 px-6 relative overflow-hidden"
+    >
+      {/* Background effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-3 gap-12 mb-8">
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Contact Section */}
-          <div className="border border-green-500/30 p-4 bg-green-500/5">
-            <h3 className="text-xl font-bold mb-4 text-green-400 border-b border-green-500/30 pb-2">
-              {'>'} CONTACT_CHANNEL
+          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Get In Touch
             </h3>
-            <p className="text-green-300/80 mb-4 text-sm leading-relaxed">
-              <span className="text-green-500">{'> '}</span>
-              Open for collaboration and new opportunities.
+            <p className="text-slate-300 mb-6 leading-relaxed">
+              Open for new opportunities and collaborations. Let's create something amazing together!
             </p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">└─</span>
-                <a
-                  href="mailto:jimmydef@outlook.fr"
-                  className="text-green-400 hover:text-green-300 hover:drop-shadow-[0_0_10px_rgba(0,255,0,0.7)] transition-all"
-                >
-                  jimmydef@outlook.fr
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">└─</span>
-                <span className="text-green-300/70">PARIS_ILE_DE_FRANCE</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">└─</span>
-                <span className="text-green-300/70">STATUS: AVAILABLE_IMMEDIATELY</span>
-              </div>
+            <div className="space-y-3">
+              <a
+                href="mailto:jimmydef@outlook.fr"
+                className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group"
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">📧</span>
+                <span>jimmydef@outlook.fr</span>
+              </a>
+              <p className="flex items-center gap-3 text-slate-300">
+                <span className="text-2xl">📍</span>
+                <span>Paris, Île-de-France</span>
+              </p>
+              <p className="flex items-center gap-3 text-slate-300">
+                <span className="text-2xl">⚡</span>
+                <span>Response time: {'<'} 24h</span>
+              </p>
             </div>
           </div>
 
           {/* Quick Links Section */}
-          <div className="border border-green-500/30 p-4 bg-green-500/5">
-            <h3 className="text-xl font-bold mb-4 text-green-400 border-b border-green-500/30 pb-2">
-              {'>'} QUICK_LINKS
+          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Quick Links
             </h3>
-            <div className="flex flex-col gap-2 text-sm">
-              <a
-                href="#hero"
-                className="text-green-300/80 hover:text-green-400 hover:translate-x-1 transition-all flex items-center gap-2"
-              >
-                <span className="text-green-500">{'>'}</span>
-                HOME
-              </a>
-              <a
-                href="#about"
-                className="text-green-300/80 hover:text-green-400 hover:translate-x-1 transition-all flex items-center gap-2"
-              >
-                <span className="text-green-500">{'>'}</span>
-                ABOUT
-              </a>
-              <a
-                href="#projects"
-                className="text-green-300/80 hover:text-green-400 hover:translate-x-1 transition-all flex items-center gap-2"
-              >
-                <span className="text-green-500">{'>'}</span>
-                PROJECTS
-              </a>
-              <a
-                href="#contact"
-                className="text-green-300/80 hover:text-green-400 hover:translate-x-1 transition-all flex items-center gap-2"
-              >
-                <span className="text-green-500">{'>'}</span>
-                CONTACT
-              </a>
+            <div className="flex flex-col gap-3">
+              {[
+                { href: '#hero', label: 'Home' },
+                { href: '#about', label: 'About' },
+                { href: '#projects', label: 'Projects' },
+                { href: '#contact', label: 'Contact' },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-slate-300 hover:text-white hover:translate-x-2 transition-all flex items-center gap-2"
+                >
+                  <span className="text-purple-400">→</span>
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Social Networks Section */}
-          <div className="border border-green-500/30 p-4 bg-green-500/5">
-            <h3 className="text-xl font-bold mb-4 text-green-400 border-b border-green-500/30 pb-2">
-              {'>'} SOCIAL_NETWORKS
+          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+              Connect
             </h3>
+            <p className="text-slate-300 mb-6">Follow me on social media</p>
             <div className="flex gap-4">
               <a
                 href="https://github.com/JimmyDef"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 border border-green-500/50 text-green-400 hover:bg-green-500/10 hover:shadow-[0_0_20px_rgba(0,255,0,0.3)] transition-all"
+                className="p-4 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 hover:scale-110 transition-all"
                 aria-label="GitHub"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -96,7 +85,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/jimmy-defranceschi"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 border border-green-500/50 text-green-400 hover:bg-green-500/10 hover:shadow-[0_0_20px_rgba(0,255,0,0.3)] transition-all"
+                className="p-4 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 hover:scale-110 transition-all"
                 aria-label="LinkedIn"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -104,28 +93,18 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <div className="mt-4 text-xs text-green-300/60">
-              <p>
-                <span className="text-green-500">{'>'} </span>
-                RESPONSE_TIME: {'<'} 24H
-              </p>
-            </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t-2 border-green-500/30 pt-8 text-center">
-          <div className="mb-4 text-xs text-green-300/60">
-            <p className="mb-2">
-              <span className="animate-pulse">▌</span> SYSTEM_STATUS: OPERATIONAL
+        <div className="border-t border-white/10 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+            <p>
+              &copy; {new Date().getFullYear()} Jimmy Defains. All rights reserved.
             </p>
             <p>
-              <span className="text-green-500">{'>'} </span>
-              BUILT_WITH: Next.js 16 • React 19 • TypeScript • Tailwind CSS
+              Built with <span className="text-pink-400">♥</span> using Next.js 16, React 19 & TypeScript
             </p>
-          </div>
-          <div className="text-sm text-green-400 border border-green-500/30 inline-block px-6 py-2 bg-green-500/5">
-            &copy; {new Date().getFullYear()} JIMMY_DEFAINS • ALL_RIGHTS_RESERVED
           </div>
         </div>
       </div>
