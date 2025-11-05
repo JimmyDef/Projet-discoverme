@@ -1,78 +1,107 @@
 export default function About() {
-  const skills = [
-    { name: 'React', level: 90 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'Next.js', level: 88 },
-    { name: 'Node.js', level: 80 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'Git', level: 85 },
-  ];
+  const skills = {
+    frontend: ['React', 'Next.js', 'TypeScript', 'React Query', 'Zustand', 'Tailwind CSS', 'Sass', 'Zod'],
+    backend: ['Node.js', 'Express', 'Prisma', 'PostgreSQL', 'REST API'],
+    tools: ['Docker', 'AWS S3', 'Stripe', 'Sentry', 'Jest', 'React Testing Library', 'Git'],
+  };
 
   return (
-    <section id="about" className="min-h-screen py-20 px-6 bg-zinc-50 dark:bg-zinc-900/50">
+    <section id="about" className="min-h-screen py-20 px-6 bg-gradient-to-b from-white to-zinc-50 dark:from-black dark:to-zinc-900/50">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-zinc-900 dark:text-zinc-100">
-          À propos de moi
-        </h2>
+        <div className="text-center mb-16">
+          <div className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full mb-4">
+            <span className="text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              À propos
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100">
+            Passionné par le code et l'innovation
+          </h2>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-              Mon parcours
-            </h3>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Développeur d'applications web passionné, j'ai obtenu mon diplôme de{' '}
-              <span className="font-semibold text-blue-600 dark:text-blue-400">
-                Développeur d'application JavaScript React
-              </span>{' '}
-              chez OpenClassrooms (RNCP niveau 6).
+              Après une reconversion professionnelle depuis l'événementiel,
+              j'ai trouvé ma véritable passion dans le développement web.
             </p>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Ma formation m'a permis de maîtriser les technologies modernes du développement web,
-              avec une expertise particulière en React, TypeScript et Next.js.
-              J'aime créer des interfaces utilisateur intuitives et des applications performantes.
+              Diplômé d'<span className="font-semibold text-blue-600 dark:text-blue-400">OpenClassrooms</span> (RNCP niveau 6)
+              en développement JavaScript React, je me spécialise dans la création
+              d'applications web modernes, performantes et scalables.
             </p>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Actuellement, je travaille sur des projets variés, allant de sites vitrines
-              modernes à des applications web complexes avec des fonctionnalités avancées.
+              Actuellement, je développe une application SaaS full-stack complexe
+              avec architecture multi-tenant, systèmes de paiement, et infrastructure cloud.
             </p>
+
+            <div className="grid grid-cols-2 gap-6 pt-6">
+              <div className="p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">Localisation</p>
+                <p className="font-semibold text-zinc-900 dark:text-zinc-100">Paris / IDF</p>
+              </div>
+              <div className="p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">Disponibilité</p>
+                <p className="font-semibold text-green-600 dark:text-green-400">Immédiate</p>
+              </div>
+              <div className="p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">Mode</p>
+                <p className="font-semibold text-zinc-900 dark:text-zinc-100">Remote / Hybride</p>
+              </div>
+              <div className="p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">Formation</p>
+                <p className="font-semibold text-zinc-900 dark:text-zinc-100">RNCP Niv. 6</p>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-              Compétences techniques
-            </h3>
-            <div className="space-y-4">
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium text-zinc-900 dark:text-zinc-100">
-                      {skill.name}
-                    </span>
-                    <span className="text-zinc-600 dark:text-zinc-400">
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <div className="h-2 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+          <div className="space-y-8">
+            <div className="p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg">
+              <h3 className="font-semibold text-lg mb-4 text-zinc-900 dark:text-zinc-100">
+                Frontend
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.frontend.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full text-sm text-zinc-700 dark:text-zinc-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8 p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
-              <h4 className="font-semibold text-lg mb-2 text-zinc-900 dark:text-zinc-100">
-                Formation
-              </h4>
-              <p className="text-blue-600 dark:text-blue-400 font-medium">
-                Développeur d'application JavaScript React
-              </p>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                OpenClassrooms • RNCP Niveau 6
-              </p>
+            <div className="p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg">
+              <h3 className="font-semibold text-lg mb-4 text-zinc-900 dark:text-zinc-100">
+                Backend
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.backend.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full text-sm text-zinc-700 dark:text-zinc-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg">
+              <h3 className="font-semibold text-lg mb-4 text-zinc-900 dark:text-zinc-100">
+                Outils & DevOps
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.tools.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full text-sm text-zinc-700 dark:text-zinc-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

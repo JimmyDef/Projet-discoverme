@@ -32,9 +32,9 @@ export default function Navigation() {
         <div className="flex justify-between items-center">
           <button
             onClick={() => scrollToSection('hero')}
-            className="text-xl font-bold text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all"
           >
-            Portfolio
+            JD
           </button>
           <div className="flex gap-6">
             <button
@@ -51,7 +51,7 @@ export default function Navigation() {
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all hover:scale-105"
             >
               Contact
             </button>
