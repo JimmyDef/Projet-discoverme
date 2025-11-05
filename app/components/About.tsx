@@ -1,76 +1,140 @@
 export default function About() {
-  const skills = [
-    { name: 'React', level: 90 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'Next.js', level: 88 },
-    { name: 'Node.js', level: 80 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'Git', level: 85 },
+  const frontend = [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'React Query',
+    'Zustand',
+    'Tailwind CSS',
+    'Sass',
+    'Zod',
+  ];
+
+  const backend = [
+    'Node.js',
+    'Express',
+    'Prisma',
+    'PostgreSQL',
+    'REST API',
+  ];
+
+  const tools = [
+    'Git',
+    'Docker',
+    'AWS S3',
+    'Stripe',
+    'Sentry',
+    'Jest',
+    'React Testing Library',
   ];
 
   return (
-    <section id="about" className="min-h-screen py-20 px-6 bg-zinc-50 dark:bg-zinc-900/50">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-zinc-900 dark:text-zinc-100">
-          À propos de moi
-        </h2>
+    <section id="about" className="min-h-screen py-32 px-6">
+      <div className="max-w-5xl mx-auto">
+        <p className="text-sm uppercase tracking-[0.3em] text-zinc-500 dark:text-zinc-400 mb-16">
+          À propos
+        </p>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-16">
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-              Mon parcours
-            </h3>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Développeur d'applications web passionné, j'ai obtenu mon diplôme de{' '}
-              <span className="font-semibold text-blue-600 dark:text-blue-400">
-                Développeur d'application JavaScript React
-              </span>{' '}
-              chez OpenClassrooms (RNCP niveau 6).
-            </p>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Ma formation m'a permis de maîtriser les technologies modernes du développement web,
-              avec une expertise particulière en React, TypeScript et Next.js.
-              J'aime créer des interfaces utilisateur intuitives et des applications performantes.
-            </p>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Actuellement, je travaille sur des projets variés, allant de sites vitrines
-              modernes à des applications web complexes avec des fonctionnalités avancées.
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-              Compétences techniques
-            </h3>
-            <div className="space-y-4">
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium text-zinc-900 dark:text-zinc-100">
-                      {skill.name}
-                    </span>
-                    <span className="text-zinc-600 dark:text-zinc-400">
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <div className="h-2 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+            <h2 className="text-3xl md:text-4xl font-light text-zinc-900 dark:text-zinc-100 leading-tight">
+              Développeur passionné par les technologies modernes
+            </h2>
+            <div className="space-y-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p>
+                Issue d'une reconversion professionnelle après plusieurs années dans l'événementiel,
+                j'ai découvert ma passion pour le développement web et me suis formé
+                intensivement aux technologies modernes.
+              </p>
+              <p>
+                Diplômé d'OpenClassrooms (RNCP niveau 6) en développement JavaScript React,
+                je me spécialise dans la création d'applications web performantes et scalables.
+              </p>
+              <p>
+                Actuellement, je développe une application SaaS complète en production,
+                gérant paiements, multi-tenant, et infrastructure cloud.
+              </p>
             </div>
 
-            <div className="mt-8 p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
-              <h4 className="font-semibold text-lg mb-2 text-zinc-900 dark:text-zinc-100">
+            <div className="pt-8 space-y-2">
+              <p className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                Localisation
+              </p>
+              <p className="text-zinc-900 dark:text-zinc-100">Paris / Île-de-France</p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                Disponibilité
+              </p>
+              <p className="text-zinc-900 dark:text-zinc-100">Immédiate</p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                Mode de travail
+              </p>
+              <p className="text-zinc-900 dark:text-zinc-100">Remote / Hybride</p>
+            </div>
+          </div>
+
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
+                Frontend
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {frontend.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-4 py-2 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
+                Backend
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {backend.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-4 py-2 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
+                Outils & DevOps
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {tools.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-4 py-2 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
+              <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                 Formation
-              </h4>
-              <p className="text-blue-600 dark:text-blue-400 font-medium">
+              </h3>
+              <p className="text-zinc-900 dark:text-zinc-100 font-light">
                 Développeur d'application JavaScript React
               </p>
-              <p className="text-zinc-600 dark:text-zinc-400">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
                 OpenClassrooms • RNCP Niveau 6
               </p>
             </div>
