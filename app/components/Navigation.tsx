@@ -24,36 +24,36 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md'
+          ? 'bg-black/90 backdrop-blur-md border-b border-green-500/30'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center font-mono">
           <button
             onClick={() => scrollToSection('hero')}
-            className="text-xl font-bold text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xl font-bold text-green-400 hover:text-green-300 transition-colors drop-shadow-[0_0_10px_rgba(0,255,0,0.5)]"
           >
-            Portfolio
+            {'>'} MATRIX_PORTFOLIO
           </button>
           <div className="flex gap-6">
             <button
               onClick={() => scrollToSection('about')}
-              className="text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              className="text-green-400 hover:text-green-300 transition-colors font-medium border border-green-500/30 px-3 py-1 hover:bg-green-500/10"
             >
-              À propos
+              {'>'} ABOUT
             </button>
             <button
               onClick={() => scrollToSection('projects')}
-              className="text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              className="text-green-400 hover:text-green-300 transition-colors font-medium border border-green-500/30 px-3 py-1 hover:bg-green-500/10"
             >
-              Projets
+              {'>'} PROJECTS
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              className="text-green-400 hover:text-green-300 transition-colors font-medium border border-green-500/30 px-3 py-1 hover:bg-green-500/10"
             >
-              Contact
+              {'>'} CONTACT
             </button>
           </div>
         </div>
