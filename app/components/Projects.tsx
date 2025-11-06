@@ -1,71 +1,140 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+
 export default function Projects() {
+  const mountRef = useRef<HTMLDivElement>(null);
+
   const projects = [
-    { title: 'QRPLANS', tech: 'Next.js • React • TypeScript', desc: 'Multi-tenant SaaS • 3 Databases • Stripe • AWS', private: true, color: 'from-purple-600 via-pink-600 to-red-600' },
-    { title: 'WEALTHHEALTH', tech: 'React • Redux • TypeScript', url: 'https://github.com/JimmyDef/Projet-WealthHealth', color: 'from-blue-600 via-cyan-600 to-teal-600' },
-    { title: 'ARGENTBANK', tech: 'React • JWT • Swagger', url: 'https://github.com/JimmyDef/Projet-argentBank', color: 'from-green-600 via-emerald-600 to-lime-600' },
-    { title: 'SPORTSEE', tech: 'React • Recharts', url: 'https://github.com/JimmyDef/Projet-SportSee', color: 'from-orange-600 via-amber-600 to-yellow-600' },
-    { title: 'LES PETITS PLATS', tech: 'JavaScript • HTML5', url: 'https://github.com/JimmyDef/Projet-LesPetitsPlats', color: 'from-pink-600 via-rose-600 to-purple-600' },
+    { title: 'QRPLANS', tech: 'Next.js • React • TypeScript', desc: 'Multi-tenant SaaS • 3 Databases • Stripe • AWS', private: true, color: 0xff00ff },
+    { title: 'WEALTHHEALTH', tech: 'React • Redux • TypeScript', url: 'https://github.com/JimmyDef/Projet-WealthHealth', color: 0x00ffff },
+    { title: 'ARGENTBANK', tech: 'React • JWT • Swagger', url: 'https://github.com/JimmyDef/Projet-argentBank', color: 0x00ff00 },
+    { title: 'SPORTSEE', tech: 'React • Recharts', url: 'https://github.com/JimmyDef/Projet-SportSee', color: 0xffff00 },
+    { title: 'LES PETITS PLATS', tech: 'JavaScript • HTML5', url: 'https://github.com/JimmyDef/Projet-LesPetitsPlats', color: 0xff0080 },
   ];
 
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 15;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    mountRef.current.appendChild(renderer.domElement);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    // Create rotating cubes for projects
+    const cubes: THREE.Mesh[] = [];
+    projects.forEach((project, i) => {
+      const geometry = new THREE.BoxGeometry(2, 2, 2);
+      const material = new THREE.MeshPhongMaterial({
+        color: project.color,
+        wireframe: true
+      });
+      const cube = new THREE.Mesh(geometry, material);
+      cube.position.x = (i - 2) * 4;
+      cubes.push(cube);
+      scene.add(cube);
+
+      const pointLight = new THREE.PointLight(project.color, 1, 10);
+      pointLight.position.copy(cube.position);
+      scene.add(pointLight);
+    });
+
+    let frame = 0;
+    const animate = () => {
+      requestAnimationFrame(animate);
+      frame += 0.01;
+
+      cubes.forEach((cube, i) => {
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        cube.position.y = Math.sin(frame + i) * 0.5;
+      });
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / (window.innerHeight * 0.5);
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      mountRef.current?.removeChild(renderer.domElement);
+      cubes.forEach(cube => {
+        cube.geometry.dispose();
+        (cube.material as THREE.Material).dispose();
+      });
+      renderer.dispose();
+    };
+  }, []);
+
   return (
-    <section id="projects" className="min-h-screen p-8 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white relative overflow-hidden">
-      {/* Abstract background shapes */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-20 w-80 h-80 bg-gradient-to-tl from-pink-500 to-purple-500 blur-3xl" />
-      </div>
+    <section id="projects" className="relative min-h-screen bg-gradient-to-b from-black via-purple-950 to-black text-white py-20">
+      <div ref={mountRef} className="absolute inset-0 opacity-30" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-2 w-32 bg-gradient-to-r from-pink-500 to-transparent" />
-            <h2 className="text-6xl font-black">PROJECTS</h2>
-            <div className="h-2 flex-1 bg-gradient-to-l from-cyan-500 to-transparent" />
-          </div>
-        </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-8">
+        <h2 className="text-6xl font-black text-center mb-16">
+          <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
+            PROJECTS
+          </span>
+        </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, i) => (
             <div
               key={project.title}
-              className={`relative group transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 transition-all duration-500`}
+              className="backdrop-blur-lg bg-black/50 border border-white/20 p-8 rounded-lg hover:scale-105 transition-all duration-300 hover:border-white/40"
+              style={{ animationDelay: `${i * 100}ms` }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-60 blur-2xl group-hover:blur-xl transition-all`} />
-              <div className="relative bg-black/80 backdrop-blur-sm border border-white/20 p-8">
-                <div className="mb-4">
-                  {project.private && (
-                    <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-black mb-3">
-                      PRIVATE
-                    </span>
-                  )}
-                  <h3 className="text-4xl font-black mb-2 tracking-tight">{project.title}</h3>
-                  <div className="h-1 w-20 bg-gradient-to-r from-white to-transparent mb-4" />
-                </div>
+              {project.private && (
+                <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-black mb-4 rounded">
+                  PRIVATE
+                </span>
+              )}
 
-                <p className="text-sm text-gray-300 mb-2">{project.tech}</p>
-                {project.desc && <p className="text-xs text-gray-400 mb-6">{project.desc}</p>}
+              <h3 className="text-3xl font-black mb-3 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                {project.title}
+              </h3>
 
-                {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-white text-black font-black text-sm hover:bg-gradient-to-r hover:from-pink-500 hover:to-cyan-500 hover:text-white transition-all"
-                  >
-                    VIEW PROJECT →
-                  </a>
-                )}
-              </div>
+              <div className="h-1 w-20 bg-gradient-to-r from-pink-500 to-cyan-500 mb-4" />
+
+              <p className="text-sm text-gray-300 mb-2">{project.tech}</p>
+              {project.desc && <p className="text-xs text-gray-400 mb-6">{project.desc}</p>}
+
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 font-bold text-sm hover:from-pink-600 hover:to-purple-600 transition-all rounded"
+                >
+                  VIEW PROJECT →
+                </a>
+              )}
             </div>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="text-center mt-16">
           <a
             href="https://github.com/JimmyDef"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-12 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-black text-xl hover:scale-105 transition-transform"
+            className="inline-block px-12 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 font-black text-xl hover:scale-105 transition-transform rounded-lg"
           >
             ALL PROJECTS
           </a>

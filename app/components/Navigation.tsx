@@ -12,26 +12,30 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-lg border-b border-white/20' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled
+        ? 'bg-black/80 backdrop-blur-xl border-b border-white/20'
+        : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-8 py-4">
         <div className="flex justify-between items-center">
-          <a href="#hero" className="text-2xl font-black tracking-tighter">
+          <a href="#hero" className="text-3xl font-black tracking-tighter">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
               JD
             </span>
           </a>
-          <div className="flex gap-2">
-            {['ABOUT', 'PROJECTS', 'CONTACT'].map((item, i) => (
+          <div className="flex gap-3">
+            {[
+              { name: 'ABOUT', gradient: 'from-purple-600 to-pink-600' },
+              { name: 'PROJECTS', gradient: 'from-cyan-600 to-blue-600' },
+              { name: 'CONTACT', gradient: 'from-green-600 to-emerald-600' }
+            ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`px-6 py-2 font-black text-sm transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 transition-all bg-gradient-to-r ${
-                  i === 0 ? 'from-purple-600 to-pink-600' :
-                  i === 1 ? 'from-cyan-600 to-blue-600' :
-                  'from-green-600 to-emerald-600'
-                } hover:scale-105`}
+                key={item.name}
+                href={`#${item.name.toLowerCase()}`}
+                className={`px-6 py-2 font-bold text-sm bg-gradient-to-r ${item.gradient} backdrop-blur-lg border border-white/30 rounded-lg hover:scale-105 transition-all`}
               >
-                {item}
+                {item.name}
               </a>
             ))}
           </div>
