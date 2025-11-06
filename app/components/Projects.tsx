@@ -1,62 +1,50 @@
-'use client';
-
 export default function Projects() {
-  const projects = [
-    { title: 'QRPlans', tech: 'Next.js • React • TypeScript • Prisma • Stripe', year: '2024', isPrivate: true },
-    { title: 'WealthHealth', tech: 'React • Redux Toolkit • TypeScript', year: '2024', url: 'https://github.com/JimmyDef/Projet-WealthHealth' },
-    { title: 'ArgentBank', tech: 'React • Redux • JWT • Swagger', year: '2024', url: 'https://github.com/JimmyDef/Projet-argentBank' },
-    { title: 'SportSee', tech: 'React • Recharts • TypeScript', year: '2023', url: 'https://github.com/JimmyDef/Projet-SportSee' },
-    { title: 'Les Petits Plats', tech: 'JavaScript • HTML5 • CSS3', year: '2023', url: 'https://github.com/JimmyDef/Projet-LesPetitsPlats' },
-  ];
-
   return (
-    <section id="projects" className="min-h-screen py-20 px-6 bg-gradient-to-b from-purple-900 via-blue-900 to-purple-900 relative overflow-hidden">
-      <div className="scanlines" />
+    <section id="projects" className="min-h-screen p-8 bg-black text-white">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-[100px] font-black uppercase leading-none mb-12 border-b-8 border-white pb-4">PROJECTS</h2>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-6xl md:text-7xl font-black text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 tracking-wider" style={{ fontFamily: 'Impact, fantasy' }}>
-          PROJECTS.EXE
-        </h2>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
-            <div key={idx} className="group bg-gradient-to-r from-cyan-500 to-pink-500 p-1 hover:scale-105 transition-all" style={{ animation: `float ${3 + idx * 0.3}s ease-in-out infinite` }}>
-              <div className="bg-purple-950 p-6 h-full">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-yellow-400 font-mono text-sm">[{project.year}]</span>
-                  {project.isPrivate && <span className="px-2 py-1 bg-pink-500 text-purple-900 text-xs font-black">PRIVATE</span>}
-                </div>
-                <h3 className="text-2xl font-black text-cyan-400 mb-3 tracking-wider">{project.title}</h3>
-                <p className="text-pink-300 text-sm font-mono mb-4">{project.tech}</p>
-                {project.url && (
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-2 bg-cyan-500 text-purple-900 font-black hover:bg-pink-500 transition-colors">
-                    VIEW CODE
-                  </a>
-                )}
-              </div>
+        <div className="space-y-8">
+          <div className="border-8 border-white p-8 bg-red-600">
+            <div className="flex justify-between items-start mb-4">
+              <p className="text-6xl font-black uppercase">QRPLANS</p>
+              <span className="border-4 border-white px-4 py-2 text-2xl font-black bg-yellow-300 text-black">PRIVATE</span>
             </div>
-          ))}
-        </div>
+            <p className="text-2xl font-bold mb-6">MULTI-TENANT SAAS • 3 POSTGRESQL DATABASES • STRIPE & PAYPAL PAYMENTS • AWS S3 STORAGE • BULLMQ + REDIS QUEUE • SENTRY MONITORING • DOCKER DEPLOYMENT</p>
+            <p className="text-xl font-bold border-t-4 border-white pt-4">NEXT.JS 16 • REACT 19 • TYPESCRIPT • PRISMA • ZUSTAND • ZOD</p>
+          </div>
 
-        <div className="mt-16 text-center">
-          <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-6 bg-gradient-to-r from-pink-500 to-cyan-500 text-purple-900 font-black text-2xl border-4 border-yellow-400 hover:scale-110 transition-all">
-            ALL PROJECTS →
+          <div className="grid grid-cols-2 gap-8">
+            <a href="https://github.com/JimmyDef/Projet-WealthHealth" target="_blank" rel="noopener noreferrer" className="border-8 border-white p-8 bg-white text-black hover:bg-yellow-300 transition-colors">
+              <p className="text-4xl font-black uppercase mb-4">WEALTHHEALTH</p>
+              <p className="text-xl font-bold mb-4">JQUERY TO REACT MIGRATION • PUBLISHED NPM PACKAGE</p>
+              <p className="text-lg font-bold">REACT • REDUX TOOLKIT • TYPESCRIPT</p>
+            </a>
+
+            <a href="https://github.com/JimmyDef/Projet-argentBank" target="_blank" rel="noopener noreferrer" className="border-8 border-white p-8 bg-white text-black hover:bg-yellow-300 transition-colors">
+              <p className="text-4xl font-black uppercase mb-4">ARGENTBANK</p>
+              <p className="text-xl font-bold mb-4">BANKING APP • JWT AUTH • API INTEGRATION</p>
+              <p className="text-lg font-bold">REACT • REDUX • RTK QUERY • SWAGGER</p>
+            </a>
+
+            <a href="https://github.com/JimmyDef/Projet-SportSee" target="_blank" rel="noopener noreferrer" className="border-8 border-white p-8 bg-white text-black hover:bg-yellow-300 transition-colors">
+              <p className="text-4xl font-black uppercase mb-4">SPORTSEE</p>
+              <p className="text-xl font-bold mb-4">SPORTS DASHBOARD • DATA VISUALIZATION</p>
+              <p className="text-lg font-bold">REACT • RECHARTS • TYPESCRIPT</p>
+            </a>
+
+            <a href="https://github.com/JimmyDef/Projet-LesPetitsPlats" target="_blank" rel="noopener noreferrer" className="border-8 border-white p-8 bg-white text-black hover:bg-yellow-300 transition-colors">
+              <p className="text-4xl font-black uppercase mb-4">LES PETITS PLATS</p>
+              <p className="text-xl font-bold mb-4">RECIPE APP • ADVANCED SEARCH ALGORITHM</p>
+              <p className="text-lg font-bold">VANILLA JS • HTML5 • CSS3</p>
+            </a>
+          </div>
+
+          <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="block border-8 border-white p-12 bg-blue-600 text-white hover:bg-black transition-colors text-center">
+            <p className="text-7xl font-black uppercase">VIEW ALL PROJECTS →</p>
           </a>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-10px) scale(1.02); }
-        }
-        .scanlines {
-          position: absolute;
-          inset: 0;
-          background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
-          pointer-events: none;
-        }
-      `}</style>
     </section>
   );
 }

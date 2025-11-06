@@ -1,67 +1,52 @@
-'use client';
-
 export default function About() {
-  const skills = [
-    { name: 'React', level: 90 }, { name: 'TypeScript', level: 85 },
-    { name: 'Next.js', level: 88 }, { name: 'Node.js', level: 80 },
-    { name: 'Tailwind', level: 90 }, { name: 'Prisma', level: 82 },
-    { name: 'Docker', level: 75 }, { name: 'Git', level: 85 },
-  ];
-
   return (
-    <section id="about" className="min-h-screen py-20 px-6 bg-gradient-to-b from-purple-900 via-pink-900 to-purple-900 relative overflow-hidden">
-      <div className="scanlines" />
+    <section id="about" className="min-h-screen p-8 bg-white text-black">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-[100px] font-black uppercase leading-none mb-12 border-b-8 border-black pb-4">ABOUT</h2>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-6xl md:text-7xl font-black text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-cyan-400 tracking-wider" style={{ fontFamily: 'Impact, fantasy' }}>
-          ABOUT.SYS
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="bg-gradient-to-r from-cyan-500 to-pink-500 p-1">
-            <div className="bg-purple-950 p-8">
-              <h3 className="text-3xl font-black text-yellow-400 mb-6">PROFILE.TXT</h3>
-              <div className="space-y-4 text-cyan-300 font-mono text-sm">
-                <p>{'>'} Full Stack Developer with a unique background in event management.</p>
-                <p>{'>'} JavaScript React Developer certification from OpenClassrooms (RNCP Level 6).</p>
-                <p>{'>'} Specializing in modern web technologies: React, TypeScript, Next.js.</p>
-                <p>{'>'} Creating intuitive UIs and high-performance applications.</p>
-              </div>
-              <div className="mt-6 p-4 bg-cyan-500 text-purple-900 font-black">
-                📍 PARIS • 💼 AVAILABLE • 🌐 REMOTE/HYBRID
-              </div>
+        <div className="grid grid-cols-2 gap-8 mb-8">
+          <div className="border-8 border-black p-8">
+            <p className="text-5xl font-black uppercase mb-6 leading-tight">FULL STACK DEVELOPER</p>
+            <div className="space-y-4 text-2xl font-bold">
+              <p>→ CAREER TRANSITION FROM EVENT MANAGEMENT TO WEB DEVELOPMENT</p>
+              <p>→ JAVASCRIPT REACT DEVELOPER CERTIFICATION (OPENCLASSROOMS RNCP NIVEAU 6)</p>
+              <p>→ SPECIALIZING IN MODERN WEB TECHNOLOGIES</p>
+              <p>→ CREATING INTUITIVE UIS AND HIGH-PERFORMANCE APPLICATIONS</p>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-pink-500 to-cyan-500 p-1">
-            <div className="bg-purple-950 p-8">
-              <h3 className="text-3xl font-black text-yellow-400 mb-6">SKILLS.DAT</h3>
-              <div className="space-y-3">
-                {skills.map(skill => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-cyan-400 font-mono font-bold">{skill.name}</span>
-                      <span className="text-pink-400 font-mono">{skill.level}%</span>
-                    </div>
-                    <div className="h-3 bg-purple-900 border-2 border-cyan-500">
-                      <div className="h-full bg-gradient-to-r from-cyan-400 to-pink-500" style={{ width: `${skill.level}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="border-8 border-black p-8 bg-yellow-300">
+            <p className="text-5xl font-black uppercase mb-6">SKILLS</p>
+            <div className="space-y-3">
+              {['REACT 90%', 'TYPESCRIPT 85%', 'NEXT.JS 88%', 'NODE.JS 80%', 'TAILWIND 90%', 'PRISMA 82%', 'DOCKER 75%', 'GIT 85%'].map(skill => (
+                <div key={skill} className="border-4 border-black p-4 bg-white">
+                  <p className="text-2xl font-black uppercase">{skill}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="border-8 border-black p-12 bg-black text-white">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <p className="text-6xl font-black mb-2">📍</p>
+              <p className="text-3xl font-black uppercase">PARIS</p>
+              <p className="text-xl font-bold">ÎLE-DE-FRANCE</p>
+            </div>
+            <div>
+              <p className="text-6xl font-black mb-2">💼</p>
+              <p className="text-3xl font-black uppercase">AVAILABLE</p>
+              <p className="text-xl font-bold">IMMEDIATELY</p>
+            </div>
+            <div>
+              <p className="text-6xl font-black mb-2">🌐</p>
+              <p className="text-3xl font-black uppercase">REMOTE</p>
+              <p className="text-xl font-bold">HYBRID</p>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .scanlines {
-          position: absolute;
-          inset: 0;
-          background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
-          pointer-events: none;
-        }
-      `}</style>
     </section>
   );
 }

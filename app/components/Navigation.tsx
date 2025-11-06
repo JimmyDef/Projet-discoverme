@@ -11,22 +11,16 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-purple-900/90 border-b-4 border-cyan-500' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto px-6 py-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors ${scrolled ? 'bg-black text-white' : 'bg-white text-black'} border-b-8 border-current`}>
+      <div className="max-w-7xl mx-auto p-4">
         <div className="flex justify-between items-center">
-          <button onClick={() => scrollToSection('hero')} className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 hover:scale-110 transition-transform">
-            JD.EXE
-          </button>
-          <div className="flex gap-3">
-            {['about', 'projects', 'contact'].map(section => (
-              <button key={section} onClick={() => scrollToSection(section)} className="px-4 py-2 bg-cyan-500 text-purple-900 font-black hover:bg-pink-500 transition-colors uppercase text-sm">
-                {section}
-              </button>
+          <a href="#hero" className="text-4xl font-black uppercase hover:underline">JD</a>
+          <div className="flex gap-4">
+            {['ABOUT', 'PROJECTS', 'CONTACT'].map(item => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-2xl font-black uppercase hover:underline border-4 border-current px-4 py-2">
+                {item}
+              </a>
             ))}
           </div>
         </div>
