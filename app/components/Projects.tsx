@@ -1,25 +1,33 @@
 export default function Projects() {
   const projects = [
-    { title: 'QRPlans', tech: 'Next.js • React • TypeScript • Prisma', private: true },
-    { title: 'WealthHealth', tech: 'React • Redux • TypeScript', url: 'https://github.com/JimmyDef/Projet-WealthHealth' },
-    { title: 'ArgentBank', tech: 'React • Redux • JWT', url: 'https://github.com/JimmyDef/Projet-argentBank' },
-    { title: 'SportSee', tech: 'React • Recharts • TypeScript', url: 'https://github.com/JimmyDef/Projet-SportSee' },
-    { title: 'Les Petits Plats', tech: 'JavaScript • HTML • CSS', url: 'https://github.com/JimmyDef/Projet-LesPetitsPlats' },
+    { title: 'QRPLANS', tech: 'Next.js • React • TypeScript', rare: 'LEGENDARY', private: true },
+    { title: 'WEALTHHEALTH', tech: 'React • Redux • TypeScript', rare: 'RARE', url: 'https://github.com/JimmyDef/Projet-WealthHealth' },
+    { title: 'ARGENTBANK', tech: 'React • JWT • Swagger', rare: 'RARE', url: 'https://github.com/JimmyDef/Projet-argentBank' },
+    { title: 'SPORTSEE', tech: 'React • Recharts', rare: 'UNCOMMON', url: 'https://github.com/JimmyDef/Projet-SportSee' },
+    { title: 'LES PETITS PLATS', tech: 'JavaScript • HTML5', rare: 'UNCOMMON', url: 'https://github.com/JimmyDef/Projet-LesPetitsPlats' },
   ];
 
   return (
-    <section id="projects" className="min-h-screen p-6 bg-gradient-to-br from-blue-300 via-purple-300 to-pink-300">
+    <section id="projects" className="min-h-screen p-4 bg-[#0f380f] text-[#9bbc0f] font-mono">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-6xl font-black text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Projects</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p, i) => (
-            <div key={i} className="bg-white/25 backdrop-blur-2xl border border-white/40 rounded-3xl p-6 hover:bg-white/35 transition-all shadow-xl">
-              {p.private && <span className="inline-block px-3 py-1 bg-yellow-400/80 rounded-full text-xs font-bold text-gray-800 mb-3">Private</span>}
-              <h3 className="text-2xl font-bold text-gray-800 mb-3">{p.title}</h3>
-              <p className="text-sm text-gray-700 mb-4">{p.tech}</p>
-              {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-2 bg-white/40 backdrop-blur-xl border border-white/50 rounded-xl text-sm font-bold text-gray-800 hover:bg-white/60 transition-all">View →</a>}
-            </div>
-          ))}
+        <div className="border-8 border-[#306230] bg-[#0f380f] p-8">
+          <h2 className="text-4xl font-black text-center mb-12 border-b-4 border-[#8bac0f] pb-4">▸ PROJECT INVENTORY ◂</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((p, i) => (
+              <div key={i} className="border-4 border-[#8bac0f] p-6 bg-[#306230] hover:bg-[#0f380f] transition-colors">
+                {p.private && <span className="inline-block px-2 py-1 bg-[#9bbc0f] text-[#0f380f] text-xs font-black mb-2">LOCKED</span>}
+                <p className="text-xs mb-2 text-[#8bac0f]">[{p.rare}]</p>
+                <h3 className="text-xl font-black mb-3">{p.title}</h3>
+                <p className="text-xs mb-4">{p.tech}</p>
+                {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-2 bg-[#8bac0f] text-[#0f380f] border-2 border-[#9bbc0f] text-sm font-black hover:bg-[#9bbc0f]">► OPEN</a>}
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-4 bg-[#8bac0f] text-[#0f380f] border-4 border-[#9bbc0f] text-xl font-black hover:bg-[#9bbc0f]">
+              ► ALL PROJECTS
+            </a>
+          </div>
         </div>
       </div>
     </section>

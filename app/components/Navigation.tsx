@@ -12,13 +12,13 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'bg-white/20 backdrop-blur-2xl border-b border-white/30' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <a href="#hero" className="text-2xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">JD</a>
+    <nav className={`fixed top-0 left-0 right-0 z-50 font-mono transition-colors ${scrolled ? 'bg-[#0f380f] border-b-4 border-[#8bac0f]' : 'bg-transparent'}`}>
+      <div className="max-w-6xl mx-auto px-4 py-3">
+        <div className="flex justify-between items-center text-[#9bbc0f]">
+          <a href="#hero" className="text-2xl font-black">▸ JD ◂</a>
           <div className="flex gap-4">
-            {['About', 'Projects', 'Contact'].map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="px-4 py-2 bg-white/30 backdrop-blur-xl border border-white/40 rounded-full text-sm font-bold text-gray-800 hover:bg-white/50 transition-all">
+            {['ABOUT', 'PROJECTS', 'CONTACT'].map(item => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="px-4 py-2 border-2 border-[#8bac0f] font-black hover:bg-[#306230] transition-colors text-sm">
                 {item}
               </a>
             ))}
