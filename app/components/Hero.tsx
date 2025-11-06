@@ -1,101 +1,100 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Hero() {
-  const [blink, setBlink] = useState(true);
+  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => setBlink(b => !b), 500);
+    const interval = setInterval(() => setRotation(r => (r + 1) % 360), 50);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="min-h-screen p-4 bg-[#0f380f] text-[#9bbc0f] font-mono" style={{ imageRendering: 'pixelated' }}>
-      <div className="max-w-5xl mx-auto">
-        {/* Pixel art border */}
-        <div className="border-8 border-[#306230] bg-[#0f380f] p-8" style={{ boxShadow: 'inset 0 0 0 4px #8bac0f' }}>
-          {/* Status bar like Game Boy */}
-          <div className="mb-8 p-4 bg-[#8bac0f] text-[#0f380f] border-4 border-[#9bbc0f]">
-            <div className="flex justify-between text-sm">
-              <span>■■■ PLAYER 1 ■■■</span>
-              <span>HP: ████████░░ 80%</span>
-              <span>LVL: 99</span>
-            </div>
+    <section className="min-h-screen p-8 bg-black text-white relative overflow-hidden">
+      {/* Animated abstract shapes */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-red-500 to-yellow-500 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-tl from-blue-500 to-purple-500 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-r from-green-500 to-cyan-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-12 gap-4" style={{ transform: `rotate(${rotation * 0.1}deg)` }}>
+          {/* Abstract geometric layout */}
+          <div className="col-span-3 h-32 bg-gradient-to-br from-red-500 to-pink-500 transform rotate-12" />
+          <div className="col-span-6 h-32 bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center transform -rotate-3">
+            <span className="text-xs">AVAILABLE</span>
           </div>
+          <div className="col-span-3 h-32 bg-gradient-to-tl from-blue-500 to-purple-500 transform rotate-6" />
+        </div>
 
-          {/* Main content */}
-          <div className="text-center space-y-6">
-            <div className="inline-block px-4 py-2 bg-[#306230] border-4 border-[#8bac0f] text-sm">
-              ▸ PRESS START ◂
+        <div className="my-16 text-center">
+          <h1 className="text-9xl font-black mb-4" style={{
+            background: 'linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #9b59b6, #ff0080)',
+            backgroundSize: '400% 400%',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+            animation: 'gradient 3s ease infinite'
+          }}>
+            JIMMY<br/>DEFAINS
+          </h1>
+        </div>
+
+        <div className="grid grid-cols-5 gap-4 mb-16">
+          <div className="col-span-2 bg-gradient-to-br from-purple-600 to-pink-600 p-8 transform -rotate-2">
+            <p className="text-3xl font-black mb-2">FULL STACK</p>
+            <p className="text-lg">DEVELOPER</p>
+          </div>
+          <div className="col-span-1 bg-gradient-to-b from-yellow-400 to-red-500 transform rotate-45" />
+          <div className="col-span-2 bg-gradient-to-tr from-cyan-500 to-blue-500 p-8 transform rotate-1">
+            <div className="space-y-2 text-sm">
+              <p>PARIS</p>
+              <p>IMMEDIATE</p>
+              <p>REMOTE</p>
             </div>
-
-            <h1 className="text-5xl md:text-7xl font-black mb-4" style={{ textShadow: '4px 4px 0 #306230' }}>
-              JIMMY DEFAINS
-            </h1>
-
-            <div className="inline-block px-6 py-3 bg-[#8bac0f] text-[#0f380f] border-4 border-[#9bbc0f] text-xl font-black">
-              {blink && '▸'} FULL STACK DEVELOPER {blink && '◂'}
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto my-8">
-              {[
-                { label: 'REACT', value: '▮▮▮▮▮▮▮▮▮░' },
-                { label: 'TYPESCRIPT', value: '▮▮▮▮▮▮▮▮▯░' },
-                { label: 'NEXT.JS', value: '▮▮▮▮▮▮▮▮▮░' },
-                { label: 'NODE.JS', value: '▮▮▮▮▮▮▮░░░' },
-              ].map(skill => (
-                <div key={skill.label} className="border-4 border-[#306230] p-3 bg-[#0f380f]">
-                  <p className="text-sm mb-1">{skill.label}</p>
-                  <p className="text-xs text-[#8bac0f]">{skill.value}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Info box with game-like style */}
-            <div className="border-8 border-[#306230] p-6 bg-[#0f380f] max-w-3xl mx-auto text-left">
-              <div className="space-y-2 text-sm">
-                <p>▸ LOCATION: PARIS, ILE-DE-FRANCE</p>
-                <p>▸ STATUS: AVAILABLE FOR QUEST</p>
-                <p>▸ CLASS: OPENCLASSROOMS RNCP LVL 6</p>
-                <p>▸ MODE: REMOTE • HYBRID</p>
-              </div>
-            </div>
-
-            {/* Featured project box */}
-            <div className="border-8 border-[#8bac0f] p-6 bg-[#306230] max-w-3xl mx-auto">
-              <p className="text-sm mb-2 text-[#9bbc0f]">★ LEGENDARY ITEM ★</p>
-              <p className="text-2xl font-black mb-2">QRPLANS SAAS</p>
-              <p className="text-xs">
-                Multi-tenant • 3 Databases • Stripe/PayPal<br />
-                AWS S3 • BullMQ • Redis • Next.js 16
-              </p>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <a href="mailto:jimmydef@outlook.fr" className="px-8 py-4 bg-[#8bac0f] text-[#0f380f] border-4 border-[#9bbc0f] font-black hover:bg-[#9bbc0f] transition-colors" style={{ textShadow: 'none' }}>
-                ► SEND MESSAGE
-              </a>
-              <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="px-8 py-4 border-4 border-[#8bac0f] font-black hover:bg-[#306230] transition-colors">
-                ► VIEW GITHUB
-              </a>
-            </div>
-
-            {/* Links like game menu */}
-            <div className="flex justify-center gap-6 mt-8">
-              <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="p-3 border-4 border-[#8bac0f] hover:bg-[#306230] transition-colors" aria-label="GitHub">
-                <span className="text-2xl">■</span>
-              </a>
-              <a href="https://www.linkedin.com/in/jimmy-defranceschi" target="_blank" rel="noopener noreferrer" className="p-3 border-4 border-[#8bac0f] hover:bg-[#306230] transition-colors" aria-label="LinkedIn">
-                <span className="text-2xl">■</span>
-              </a>
-            </div>
-
-            <p className="text-xs mt-8 animate-pulse">▼ INSERT COIN TO CONTINUE ▼</p>
           </div>
         </div>
+
+        <div className="grid grid-cols-4 gap-4 mb-16">
+          {['REACT', 'TYPESCRIPT', 'NEXT.JS', 'NODE.JS'].map((tech, i) => (
+            <div key={tech} className={`p-6 bg-gradient-to-br ${
+              i % 4 === 0 ? 'from-red-500 to-orange-500' :
+              i % 4 === 1 ? 'from-blue-500 to-cyan-500' :
+              i % 4 === 2 ? 'from-green-500 to-emerald-500' :
+              'from-purple-500 to-pink-500'
+            } transform ${i % 2 === 0 ? 'rotate-2' : '-rotate-2'} hover:scale-110 transition-transform`}>
+              <p className="font-black text-2xl">{tech}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-4 bg-gradient-to-br from-yellow-400 to-orange-500 p-8 transform rotate-1">
+            <p className="text-sm mb-2">FEATURED</p>
+            <p className="text-3xl font-black mb-2">QRPLANS</p>
+            <p className="text-xs">Multi-tenant SaaS • 3 Databases • Stripe • AWS</p>
+          </div>
+          <div className="col-span-5 flex flex-col gap-4">
+            <a href="mailto:jimmydef@outlook.fr" className="bg-gradient-to-r from-red-500 to-pink-500 p-6 font-black text-2xl text-center transform -rotate-1 hover:scale-105 transition-transform">
+              CONTACT
+            </a>
+            <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-500 to-purple-500 p-6 font-black text-2xl text-center transform rotate-1 hover:scale-105 transition-transform">
+              GITHUB
+            </a>
+          </div>
+          <div className="col-span-3 bg-gradient-to-tl from-green-500 to-cyan-500 transform -rotate-3" />
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
     </section>
   );
 }
