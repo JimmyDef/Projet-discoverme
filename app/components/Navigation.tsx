@@ -12,13 +12,13 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors ${scrolled ? 'bg-black text-white' : 'bg-white text-black'} border-b-8 border-current`}>
-      <div className="max-w-7xl mx-auto p-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'bg-white border-b-4 border-black shadow-lg' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-6 py-3">
         <div className="flex justify-between items-center">
-          <a href="#hero" className="text-4xl font-black uppercase hover:underline">JD</a>
-          <div className="flex gap-4">
-            {['ABOUT', 'PROJECTS', 'CONTACT'].map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-2xl font-black uppercase hover:underline border-4 border-current px-4 py-2">
+          <a href="#hero" className="text-2xl font-serif font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>THE DEVELOPER TIMES</a>
+          <div className="flex gap-6 font-serif text-sm">
+            {['About', 'Projects', 'Contact'].map(item => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="hover:underline font-bold uppercase tracking-wider">
                 {item}
               </a>
             ))}
