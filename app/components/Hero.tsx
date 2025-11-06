@@ -1,92 +1,62 @@
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-screen p-8 bg-white text-black">
-      <div className="max-w-7xl mx-auto border-4 border-black">
-        {/* Masthead */}
-        <div className="border-b-4 border-black p-6 bg-white">
-          <div className="text-center">
-            <p className="text-sm font-serif mb-2">Paris, Île-de-France • {new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            <h1 className="text-7xl font-serif font-bold tracking-tight mb-2" style={{ fontFamily: 'Times New Roman, serif' }}>
-              THE DEVELOPER TIMES
+    <section id="hero" className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-purple-400 via-pink-300 to-blue-300 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')]" />
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="bg-white/20 backdrop-blur-2xl border border-white/30 rounded-3xl p-12 shadow-2xl">
+          <div className="text-center space-y-8">
+            <div className="inline-block px-6 py-2 bg-white/30 backdrop-blur-xl border border-white/40 rounded-full text-sm font-semibold text-gray-800 shadow-lg">
+              ✨ Available for Hire
+            </div>
+
+            <h1 className="text-7xl md:text-8xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-6">
+              Jimmy Defains
             </h1>
-            <p className="text-sm font-serif italic border-t border-black pt-2">All The Code That's Fit To Deploy</p>
-          </div>
-        </div>
 
-        {/* Above the fold */}
-        <div className="grid grid-cols-12 gap-8 p-8">
-          {/* Main story */}
-          <div className="col-span-8 border-r-2 border-black pr-8">
-            <p className="text-xs font-sans uppercase tracking-wider mb-2 text-gray-600">BREAKING NEWS</p>
-            <h2 className="text-6xl font-serif font-bold leading-tight mb-4" style={{ fontFamily: 'Times New Roman, serif' }}>
-              Jimmy Defains: Full Stack Developer Available for Immediate Hire
-            </h2>
-            <p className="text-sm font-sans italic mb-4 text-gray-700">By Editorial Staff • Published Today</p>
+            <p className="text-3xl font-bold text-gray-800 mb-8">Full Stack Developer</p>
 
-            <div className="columns-2 gap-6 text-justify font-serif leading-relaxed" style={{ fontFamily: 'Georgia, serif' }}>
-              <p className="mb-4">
-                <span className="text-6xl float-left mr-2 leading-none font-bold">I</span>
-                n a career transition that exemplifies adaptability and determination, Jimmy Defains has successfully pivoted from event management to become a skilled full-stack developer. Armed with a JavaScript React Developer certification from OpenClassrooms (RNCP Niveau 6), Defains brings a fresh perspective to modern web development.
-              </p>
-              <p className="mb-4">
-                Specializing in React, TypeScript, and Next.js, Defains creates intuitive user interfaces and high-performance applications. His portfolio ranges from showcase websites to complex SaaS applications with advanced features, demonstrating versatility across the full spectrum of web development.
-              </p>
-              <p className="mb-4">
-                Currently available for remote or hybrid positions, Defains is based in the Paris Île-de-France region and promises a response time of less than 24 hours to inquiries. His technical stack includes cutting-edge technologies such as Next.js 16, React 19, TypeScript, Prisma, and various modern development tools.
-              </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {['React', 'TypeScript', 'Next.js', 'Node.js'].map(tech => (
+                <span key={tech} className="px-5 py-2 bg-white/40 backdrop-blur-xl border border-white/50 rounded-full text-sm font-semibold text-gray-700 shadow-lg">
+                  {tech}
+                </span>
+              ))}
             </div>
 
-            <div className="mt-6 p-4 bg-gray-100 border-2 border-black">
-              <p className="font-serif italic text-center">
-                "Creating intuitive UIs and high-performance applications is not just my profession—it's my passion."
-              </p>
-              <p className="text-xs text-center mt-2 font-sans">— Jimmy Defains, Full Stack Developer</p>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="col-span-4">
-            <div className="mb-8">
-              <p className="text-xs font-sans uppercase tracking-wider mb-3 pb-1 border-b-2 border-black font-bold">CONTACT INFORMATION</p>
-              <div className="space-y-2 font-serif text-sm">
-                <p><strong>Email:</strong> jimmydef@outlook.fr</p>
-                <p><strong>Location:</strong> Paris, Île-de-France</p>
-                <p><strong>Status:</strong> Available Immediately</p>
-                <p><strong>Work Mode:</strong> Remote • Hybrid</p>
+            <div className="bg-white/30 backdrop-blur-2xl border border-white/40 rounded-2xl p-8 mb-8">
+              <div className="grid grid-cols-2 gap-6 text-left">
+                <div>
+                  <p className="text-xs text-gray-600 font-semibold mb-1">Location</p>
+                  <p className="text-gray-800 font-bold">Paris, Île-de-France</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-600 font-semibold mb-1">Availability</p>
+                  <p className="text-gray-800 font-bold">Immediate</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-600 font-semibold mb-1">Certification</p>
+                  <p className="text-gray-800 font-bold">OpenClassrooms RNCP 6</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-600 font-semibold mb-1">Work Mode</p>
+                  <p className="text-gray-800 font-bold">Remote • Hybrid</p>
+                </div>
               </div>
             </div>
 
-            <div className="mb-8 p-4 bg-black text-white">
-              <p className="text-xs font-sans uppercase tracking-wider mb-3 font-bold">FEATURED PROJECT</p>
-              <h3 className="text-2xl font-serif font-bold mb-2">QRPlans SaaS Platform</h3>
-              <p className="text-xs font-serif mb-3">A multi-tenant SaaS application with advanced payment systems, cloud storage, and asynchronous job processing.</p>
-              <ul className="text-xs space-y-1 font-serif">
-                <li>• 3 PostgreSQL Databases</li>
-                <li>• Stripe & PayPal Integration</li>
-                <li>• AWS S3 Cloud Storage</li>
-                <li>• BullMQ + Redis Queue</li>
-                <li>• Next.js 16 & React 19</li>
-              </ul>
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-6 text-white shadow-xl">
+              <p className="text-sm font-bold mb-2">⭐ Featured Project</p>
+              <p className="text-2xl font-black mb-2">QRPlans SaaS Platform</p>
+              <p className="text-sm opacity-90">Multi-tenant • 3 Databases • Stripe/PayPal • AWS S3 • BullMQ</p>
             </div>
 
-            <div className="mb-8">
-              <p className="text-xs font-sans uppercase tracking-wider mb-3 pb-1 border-b-2 border-black font-bold">TECH STACK</p>
-              <div className="grid grid-cols-2 gap-2 text-xs font-serif">
-                <div className="border border-black p-2 text-center font-bold">REACT</div>
-                <div className="border border-black p-2 text-center font-bold">TYPESCRIPT</div>
-                <div className="border border-black p-2 text-center font-bold">NEXT.JS</div>
-                <div className="border border-black p-2 text-center font-bold">NODE.JS</div>
-                <div className="border border-black p-2 text-center font-bold">PRISMA</div>
-                <div className="border border-black p-2 text-center font-bold">DOCKER</div>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <a href="mailto:jimmydef@outlook.fr" className="block text-center p-3 bg-red-700 text-white font-sans font-bold uppercase text-sm hover:bg-red-900 transition-colors">
-                Send Inquiry →
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="mailto:jimmydef@outlook.fr" className="px-8 py-4 bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl font-bold text-gray-800 hover:bg-white/60 transition-all shadow-xl">
+                Contact Me
               </a>
-              <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="block text-center p-3 border-2 border-black font-sans font-bold uppercase text-sm hover:bg-black hover:text-white transition-colors">
-                View Portfolio →
+              <a href="https://github.com/JimmyDef" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-white hover:from-purple-700 hover:to-pink-700 transition-all shadow-xl">
+                View GitHub
               </a>
             </div>
           </div>
